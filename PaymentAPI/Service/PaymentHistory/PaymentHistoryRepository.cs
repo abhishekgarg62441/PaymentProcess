@@ -41,7 +41,7 @@ namespace PaymentAPI.Service.PaymentHistory
                 }
                 else
                 {
-                    //yet to work
+                    //yet to work  //need to retry 3 times
                     string status = "Processed";
 
                     return await SaveDetail(model, status);
@@ -79,7 +79,7 @@ namespace PaymentAPI.Service.PaymentHistory
 
 
 
-            return new stringMessage("Payment is processed.", "Success");
+            return new stringMessage("Payment is processedt.", "Success");
         }
     }
 
