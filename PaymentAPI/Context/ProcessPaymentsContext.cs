@@ -14,7 +14,8 @@ namespace PaymentAPI.Context
 
 
         public DbSet<ProcessPaymentDetail> ProcessPaymentDetail { get; set; }
-
+        public DbSet<PaymentState> PaymentState { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Employee>().HasData(new Employee

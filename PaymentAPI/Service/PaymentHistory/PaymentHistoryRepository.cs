@@ -30,43 +30,24 @@ namespace PaymentAPI.Service.PaymentHistory
                 if (model.Amount < 20)
                 {
                     var status = await _iCheapPaymentGeteway.CreatePayment(model);
-                    await _context.SaveChangesAsync();
-
-
-
-                    return new stringMessage("Payment Successfully done.", "Success");
+                    return await SaveDetail(model, status);
                 }
 
                 else if (model.Amount > 20 & model.Amount < 500)
                 {
                     var status = await _iExpensivePaymentGateway.CreatePayment(model);
 
-
-                    ProcessPaymentDetail item = new ProcessPaymentDetail();
-
-                    item.CardHolder = model.CardHolder;
-                    item.CreditCardNumber = model.CreditCardNumber;
-                    item.ExpirationDate = model.ExpirationDate;
-                    item.SecurityCode = model.SecurityCode;
-                    item.Amount = model.Amount;
-
-                    await _context.ProcessPaymentDetail.AddAsync(item);
-                    await _context.SaveChangesAsync();
-
-
-
-                    return new stringMessage("Payment Successfully done.", "Success");
+                    return await SaveDetail(model, status);
                 }
                 else
                 {
-                    await _context.SaveChangesAsync();
+                    //yet to work
+                    string status = "Processed";
 
-
-
-                    return new stringMessage("Payment Successfully done.", "Success");
+                    return await SaveDetail(model, status);
                 }
 
-               
+
 
             }
             catch (Exception ex)
@@ -75,9 +56,31 @@ namespace PaymentAPI.Service.PaymentHistory
             }
         }
 
+        private async Task<stringMessage> SaveDetail(PaymentModel model, string status)
+        {
+            ProcessPaymentDetail payment = new ProcessPaymentDetail();
+
+            payment.CardHolder = model.CardHolder;
+            payment.CreditCardNumber = model.CreditCardNumber;
+            payment.ExpirationDate = model.ExpirationDate;
+            payment.SecurityCode = model.SecurityCode;
+            payment.Amount = model.Amount;
+
+            await _context.ProcessPaymentDetail.AddAsync(payment);
+            await _context.SaveChangesAsync();
+
+            PaymentState paymentstate = new PaymentState();
+            paymentstate.PaymentID = payment.PaymentID;
+            paymentstate.PaymentStateStatus = status;
+
+
+            await _context.PaymentState.AddAsync(paymentstate);
+            await _context.SaveChangesAsync();
 
 
 
+            return new stringMessage("Payment is processed.", "Success");
+        }
     }
 
 }
