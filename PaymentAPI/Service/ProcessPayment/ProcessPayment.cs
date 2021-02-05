@@ -79,7 +79,7 @@ namespace PaymentAPI.Service.ProcessPayment
 
 
 
-            return new stringMessage("Payment is processedt.", "Success");
+            return new stringMessage("Payment is processed.", "Success");
         }
     }
 
