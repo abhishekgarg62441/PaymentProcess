@@ -15,7 +15,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PaymentAPI.Context;
-using PaymentAPI.Helpers;
 using PaymentAPI.Service.PaymentHistory;
 
 namespace PaymentAPI
@@ -35,9 +34,7 @@ namespace PaymentAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
-
+            
 
             services.AddScoped<IPaymentHistoryRepository, PaymentHistoryRepository>();
 

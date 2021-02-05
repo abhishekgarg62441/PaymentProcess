@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\API_PAYMENT\\PaymentProcess\\PaymentAPI\\PaymentAPI.csproj": {}
+    "D:\\API_PAYMENT\\Payment\\PaymentAPI\\PaymentAPI.csproj": {}
   },
   "projects": {
-    "D:\\API_PAYMENT\\PaymentProcess\\PaymentAPI\\PaymentAPI.csproj": {
+    "D:\\API_PAYMENT\\Payment\\PaymentAPI\\PaymentAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\API_PAYMENT\\PaymentProcess\\PaymentAPI\\PaymentAPI.csproj",
+        "projectUniqueName": "D:\\API_PAYMENT\\Payment\\PaymentAPI\\PaymentAPI.csproj",
         "projectName": "PaymentAPI",
-        "projectPath": "D:\\API_PAYMENT\\PaymentProcess\\PaymentAPI\\PaymentAPI.csproj",
+        "projectPath": "D:\\API_PAYMENT\\Payment\\PaymentAPI\\PaymentAPI.csproj",
         "packagesPath": "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\",
-        "outputPath": "D:\\API_PAYMENT\\PaymentProcess\\PaymentAPI\\obj\\",
+        "outputPath": "D:\\API_PAYMENT\\Payment\\PaymentAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Abhishek.kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
