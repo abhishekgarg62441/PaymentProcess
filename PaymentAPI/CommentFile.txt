@@ -1,0 +1,35 @@
+﻿Setup Migration:-
+First command
+
+add-migration initialmigration
+
+migration folder is added then update database to create new database
+
+update-database
+
+//https://code-maze.com/net-core-web-api-ef-core-code-first/
+-------NET CORE EF CODE GENERATION
+Add-Migration PaymentAPI.Context.ProcessPaymentsContext
+
+update-database
+database created by update-database
+
+add methog in context run the command
+Add-Migration PaymentAPI.Context.ProcessPaymentsContextSeed
+
+CREATE SCRIPT OF DB
+Script-Migration
+
+
+------------TO ADD AND REVERT MIGRATIONS
+Add-Migration EFCoreCodeFirstSample.Models.AddEmployeeGender
+
+Sometimes we add a migration and then realize we need to make additional changes to our model before applying it. To remove the last migration, we can use the command:
+
+Remove-Migration
+
+If we already applied a migration (or several migrations) to the database but need to revert it, we can use the same command to apply migrations, but specify the name of the migration we want to roll back to.
+
+Let’s say we already applied the migration to add the Gender column to the database by using the below command.
+
+update-database
