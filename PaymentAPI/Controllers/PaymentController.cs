@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using PaymentAPI.DTO;
-using PaymentAPI.Service.PaymentHistory;
+using PaymentAPI.Service.ProcessPayment;
 
 namespace PaymentAPI.Controllers
 {
@@ -18,8 +18,8 @@ namespace PaymentAPI.Controllers
 
         private readonly IConfiguration _iConfiguration;
 
-        private readonly IPaymentHistoryRepository _iPaymentHistoryRepository;
-        public PaymentController( IConfiguration iConfiguration, IPaymentHistoryRepository iPaymentHistoryRepository)
+        private readonly IProcessPayment _iPaymentHistoryRepository;
+        public PaymentController( IConfiguration iConfiguration, IProcessPayment iPaymentHistoryRepository)
         {
             _iConfiguration = iConfiguration;
             _iPaymentHistoryRepository = iPaymentHistoryRepository;
@@ -37,7 +37,7 @@ namespace PaymentAPI.Controllers
                     return BadRequest("Invalid request");
                 }
 
-                var response = await _iPaymentHistoryRepository.ProcessPayment(Model);
+                var response = await _iPaymentHistoryRepository.CardProcessPayment(Model);
 
                 if (response != null)
                 {

@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PaymentAPI.Context;
 using PaymentAPI.Service.PaymentDomain;
-using PaymentAPI.Service.PaymentHistory;
+using PaymentAPI.Service.ProcessPayment;
 
 namespace PaymentAPI
 {
@@ -40,7 +40,7 @@ namespace PaymentAPI
 
             services.AddScoped<ICheapPaymentGeteway, CheapPaymentGateway>();
 
-            services.AddScoped<IPaymentHistoryRepository, PaymentHistoryRepository>();
+            services.AddScoped<IProcessPayment, ProcessPayment>();
 
 
             services.AddDbContext<ProcessPaymentsContext>(item => item.UseSqlServer(Configuration.GetConnectionString("connectionstring")));

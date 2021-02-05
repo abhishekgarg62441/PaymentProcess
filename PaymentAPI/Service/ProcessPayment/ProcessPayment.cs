@@ -8,21 +8,21 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using PaymentAPI.Service.PaymentDomain;
 
-namespace PaymentAPI.Service.PaymentHistory
+namespace PaymentAPI.Service.ProcessPayment
 {
-    public class PaymentHistoryRepository : IPaymentHistoryRepository
+    public class ProcessPayment : IProcessPayment
     {
         readonly ProcessPaymentsContext _context;
 
         private readonly ICheapPaymentGeteway _iCheapPaymentGeteway;
         private readonly IExpensivePaymentGateway _iExpensivePaymentGateway;
-        public PaymentHistoryRepository(ProcessPaymentsContext context, ICheapPaymentGeteway iCheapPaymentGeteway, IExpensivePaymentGateway iExpensivePaymentGateway)
+        public ProcessPayment(ProcessPaymentsContext context, ICheapPaymentGeteway iCheapPaymentGeteway, IExpensivePaymentGateway iExpensivePaymentGateway)
         {
             _context = context;
             _iCheapPaymentGeteway = iCheapPaymentGeteway;
             _iExpensivePaymentGateway = iExpensivePaymentGateway;
         }
-        public async Task<stringMessage> ProcessPayment(PaymentModel model)
+        public async Task<stringMessage> CardProcessPayment(PaymentModel model)
         {
             try
             {
