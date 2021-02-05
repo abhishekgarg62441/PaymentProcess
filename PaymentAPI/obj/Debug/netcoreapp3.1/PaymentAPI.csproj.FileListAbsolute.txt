@@ -134,9 +134,6 @@ D:\API_PAYMENT\Payment\PaymentAPI\bin\Debug\netcoreapp3.1\Microsoft.Identity.Cli
 D:\API_PAYMENT\Payment\PaymentAPI\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 D:\API_PAYMENT\Payment\PaymentAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 D:\API_PAYMENT\Payment\PaymentAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
-D:\API_PAYMENT\Payment\PaymentAPI\bin\Debug\netcoreapp3.1\PayPal.dll
-D:\API_PAYMENT\Payment\PaymentAPI\bin\Debug\netcoreapp3.1\PayPalHttp-Dotnet.dll
-D:\API_PAYMENT\Payment\PaymentAPI\bin\Debug\netcoreapp3.1\Stripe.net.dll
 D:\API_PAYMENT\Payment\PaymentAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 D:\API_PAYMENT\Payment\PaymentAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\API_PAYMENT\Payment\PaymentAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll

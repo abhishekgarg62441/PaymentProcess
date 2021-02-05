@@ -410,27 +410,6 @@
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
         }
       },
-      "PayPal/1.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "6.0.6"
-        },
-        "compile": {
-          "lib/net451/PayPal.dll": {}
-        },
-        "runtime": {
-          "lib/net451/PayPal.dll": {}
-        }
-      },
-      "PayPalHttp/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/PayPalHttp-Dotnet.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/PayPalHttp-Dotnet.dll": {}
-        }
-      },
       "runtime.native.System/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -477,20 +456,6 @@
             "assetType": "native",
             "rid": "win-x86"
           }
-        }
-      },
-      "Stripe.net/39.34.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Bcl.AsyncInterfaces": "1.1.0",
-          "Newtonsoft.Json": "11.0.1",
-          "System.Configuration.ConfigurationManager": "4.5.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Stripe.net.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Stripe.net.dll": {}
         }
       },
       "Swashbuckle.AspNetCore/5.6.3": {
@@ -691,7 +656,7 @@
           "System.Security.Permissions": "4.5.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
@@ -1146,7 +1111,7 @@
           "System.Security.Principal.Windows": "4.5.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Security.AccessControl.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Security.AccessControl.dll": {}
@@ -1197,7 +1162,7 @@
           "System.Security.AccessControl": "4.5.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Security.Permissions.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Security.Permissions.dll": {}
@@ -1209,7 +1174,7 @@
           "Microsoft.NETCore.Platforms": "2.0.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Security.Principal.Windows.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Security.Principal.Windows.dll": {}
@@ -2128,35 +2093,6 @@
         "newtonsoft.json.bson.nuspec"
       ]
     },
-    "PayPal/1.0.0": {
-      "sha512": "gkliVb46M8vrGhjpgYQyh3NoEj41POmNqd36KEx87aF7B+wk/55f8Nq+2xle7snOiR/wz+5Jj8lpZnvxOC75jw==",
-      "type": "package",
-      "path": "paypal/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/PayPal.dll",
-        "lib/net40/PayPal.xml",
-        "lib/net45/PayPal.dll",
-        "lib/net45/PayPal.xml",
-        "lib/net451/PayPal.dll",
-        "lib/net451/PayPal.xml",
-        "paypal.1.0.0.nupkg.sha512",
-        "paypal.nuspec"
-      ]
-    },
-    "PayPalHttp/1.0.0": {
-      "sha512": "C6ZjeUIBqub+Api8b2B4Qwp8Y+1mthbV1ZsG1PtfknFpbvKKA3AlsBURAhsBrE+ozvjV4P8OxAXpv+ukZznGwQ==",
-      "type": "package",
-      "path": "paypalhttp/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/netstandard2.0/PayPalHttp-Dotnet.dll",
-        "paypalhttp.1.0.0.nupkg.sha512",
-        "paypalhttp.nuspec"
-      ]
-    },
     "runtime.native.System/4.3.0": {
       "sha512": "c/qWt2LieNZIj1jGnVNsE2Kl23Ya2aSTBuXMD6V7k9KWr6l16Tqdwq+hJScEpWER9753NWC8h96PaVNY5Ld7Jw==",
       "type": "package",
@@ -2232,28 +2168,6 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
-      ]
-    },
-    "Stripe.net/39.34.0": {
-      "sha512": "JCTVeuROnqYY7fY718f8/22DMQxtIfs32ewI4Ck6g28R1rcOnaXq5+GuSy34twtDjp3U3bChOfCUqyeI+OhFCQ==",
-      "type": "package",
-      "path": "stripe.net/39.34.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE",
-        "icon.png",
-        "lib/net461/Stripe.net.dll",
-        "lib/net461/Stripe.net.pdb",
-        "lib/net461/Stripe.net.xml",
-        "lib/net5.0/Stripe.net.dll",
-        "lib/net5.0/Stripe.net.pdb",
-        "lib/net5.0/Stripe.net.xml",
-        "lib/netstandard2.0/Stripe.net.dll",
-        "lib/netstandard2.0/Stripe.net.pdb",
-        "lib/netstandard2.0/Stripe.net.xml",
-        "stripe.net.39.34.0.nupkg.sha512",
-        "stripe.net.nuspec"
       ]
     },
     "Swashbuckle.AspNetCore/5.6.3": {
@@ -5392,9 +5306,6 @@
       "Microsoft.EntityFrameworkCore.Design >= 3.1.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.0",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.0",
-      "PayPal >= 1.0.0",
-      "PayPalHttp >= 1.0.0",
-      "Stripe.net >= 39.34.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -5459,18 +5370,6 @@
             "target": "Package",
             "version": "[3.1.0, )"
           },
-          "PayPal": {
-            "target": "Package",
-            "version": "[1.0.0, )"
-          },
-          "PayPalHttp": {
-            "target": "Package",
-            "version": "[1.0.0, )"
-          },
-          "Stripe.net": {
-            "target": "Package",
-            "version": "[39.34.0, )"
-          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[5.6.3, )"
@@ -5497,17 +5396,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'PayPal 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
-      "libraryId": "PayPal",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  }
 }

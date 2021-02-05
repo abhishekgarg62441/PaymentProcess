@@ -62,18 +62,6 @@
               "target": "Package",
               "version": "[3.1.0, )"
             },
-            "PayPal": {
-              "target": "Package",
-              "version": "[1.0.0, )"
-            },
-            "PayPalHttp": {
-              "target": "Package",
-              "version": "[1.0.0, )"
-            },
-            "Stripe.net": {
-              "target": "Package",
-              "version": "[39.34.0, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"

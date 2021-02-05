@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ozgYkG0LbJnOCW3wcQnMqD3dm+xY4jqNjagNKMGA1qqKFcxxLBB3zrIjb3MyoiVMWd6jE691EUsJY/Ijsth3LA==",
+  "dgSpecHash": "s5Mjw5Bl87d1d/OnX4ICNMYce1ExY8yHZf2aub+S28woos0qED9cyC0FS4dcclcRW03XWGzwqID2uNhcs+sThg==",
   "success": true,
   "projectFilePath": "D:\\API_PAYMENT\\Payment\\PaymentAPI\\PaymentAPI.csproj",
   "expectedPackageFiles": [
@@ -36,14 +36,11 @@
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
-    "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\paypal\\1.0.0\\paypal.1.0.0.nupkg.sha512",
-    "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\paypalhttp\\1.0.0\\paypalhttp.1.0.0.nupkg.sha512",
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\stripe.net\\39.34.0\\stripe.net.39.34.0.nupkg.sha512",
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
@@ -106,16 +103,5 @@
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Abhishek.kumar\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'PayPal 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
-      "libraryId": "PayPal",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  "logs": []
 }

@@ -5,9 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Stripe.Infrastructure;
-using Stripe;
-using PayPal.Api;
 using Microsoft.Extensions.Options;
 using PaymentAPI.Service.PaymentDomain;
 
@@ -43,8 +40,6 @@ namespace PaymentAPI.Service.PaymentHistory
                 {
 
                 }
-
-
 
 
                 ProcessPaymentDetail item = new ProcessPaymentDetail();
