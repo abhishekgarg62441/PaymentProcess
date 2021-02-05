@@ -28,15 +28,25 @@ namespace PaymentAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("ProcessPayment")]
-        public async Task<IActionResult> ProcessPayment(PaymentSetting Setting)
+        public async Task<IActionResult> ProcessPayment(PaymentModel Model)
         {
             try
             {
-                if (Setting == null)
+                if (Model == null)
                 {
                     return BadRequest("Invalid request");
                 }
-                var response = await _iPaymentHistoryRepository.ProcessPayment(Setting);
+
+                var response = await _iPaymentHistoryRepository.ProcessPayment(Model);
+
+                if (response != null)
+                {
+                    if (response.Message == "Failed")
+                    {
+                        return BadRequest("Invalid request");
+                    }
+                }
+
 
                 return Ok((new { Message = response.Message }));
             }

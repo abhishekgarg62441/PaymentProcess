@@ -9,6 +9,7 @@ using Stripe.Infrastructure;
 using Stripe;
 using PayPal.Api;
 using Microsoft.Extensions.Options;
+using PaymentAPI.Service.PaymentDomain;
 
 namespace PaymentAPI.Service.PaymentHistory
 {
@@ -16,42 +17,45 @@ namespace PaymentAPI.Service.PaymentHistory
     {
         readonly ProcessPaymentsContext _context;
 
-      
-        public PaymentHistoryRepository(ProcessPaymentsContext context)
+        private readonly ICheapPaymentGeteway _iCheapPaymentGeteway;
+        private readonly IExpensivePaymentGateway _iExpensivePaymentGateway;
+        public PaymentHistoryRepository(ProcessPaymentsContext context, ICheapPaymentGeteway iCheapPaymentGeteway, IExpensivePaymentGateway iExpensivePaymentGateway)
         {
             _context = context;
-            
+            _iCheapPaymentGeteway = iCheapPaymentGeteway;
+            _iExpensivePaymentGateway = iExpensivePaymentGateway;
         }
-        public async Task<stringMessage> ProcessPayment(PaymentSetting Setting)
+        public async Task<stringMessage> ProcessPayment(PaymentModel model)
         {
             try
             {
 
-                //ProcessPaymentDetail item = new ProcessPaymentDetail();
-
-                //item.CardHolder = Setting.CardHolder;
-                //item.CreditCardNumber = Setting.CreditCardNumber;
-                //item.ExpirationDate = Setting.ExpirationDate;
-                //item.SecurityCode = Setting.SecurityCode;
-                //item.Amount = Setting.Amount;
-
-                //await _context.ProcessPaymentDetail.AddAsync(item);
-                if (Setting.Amount < 20)
+                if (model.Amount < 20)
                 {
-                   
-
+                    await _iCheapPaymentGeteway.CreatePayment(model);
                 }
 
-                else if (Setting.Amount > 20 & Setting.Amount < 500)
+                else if (model.Amount > 20 & model.Amount < 500)
                 {
-                  
+                    await _iExpensivePaymentGateway.CreatePayment(model);
+                }
+                else
+                {
 
                 }
 
 
 
 
+                ProcessPaymentDetail item = new ProcessPaymentDetail();
 
+                item.CardHolder = model.CardHolder;
+                item.CreditCardNumber = model.CreditCardNumber;
+                item.ExpirationDate = model.ExpirationDate;
+                item.SecurityCode = model.SecurityCode;
+                item.Amount = model.Amount;
+
+                await _context.ProcessPaymentDetail.AddAsync(item);
 
                 await _context.SaveChangesAsync();
 
@@ -62,13 +66,13 @@ namespace PaymentAPI.Service.PaymentHistory
             }
             catch (Exception ex)
             {
-                //await _iLogRepository.AddLog(ex.StackTrace + " --- " + ex.Message + (ex.InnerException != null ? ex.InnerException.ToString() : ""), "APILOG");
                 return new stringMessage("Exception", "Failed");
             }
         }
 
 
 
+
     }
- 
+
 }

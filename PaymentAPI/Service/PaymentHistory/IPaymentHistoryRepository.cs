@@ -8,6 +8,6 @@ namespace PaymentAPI.Service.PaymentHistory
 {
     public interface IPaymentHistoryRepository
     {
-         Task<stringMessage> ProcessPayment(PaymentSetting Setting);
+         Task<stringMessage> ProcessPayment(PaymentModel Model);
     }
 }

@@ -104,7 +104,6 @@ D:\API_PAYMENT\PaymentProcess\PaymentAPI\obj\Debug\netcoreapp3.1\staticwebassets
 D:\API_PAYMENT\PaymentProcess\PaymentAPI\obj\Debug\netcoreapp3.1\PaymentAPI.dll
 D:\API_PAYMENT\PaymentProcess\PaymentAPI\obj\Debug\netcoreapp3.1\PaymentAPI.pdb
 D:\API_PAYMENT\PaymentProcess\PaymentAPI\obj\Debug\netcoreapp3.1\PaymentAPI.genruntimeconfig.cache
-D:\API_PAYMENT\Payment\PaymentAPI\obj\Debug\netcoreapp3.1\PaymentAPI.csprojAssemblyReference.cache
 D:\API_PAYMENT\Payment\PaymentAPI\obj\Debug\netcoreapp3.1\PaymentAPI.AssemblyInfoInputs.cache
 D:\API_PAYMENT\Payment\PaymentAPI\obj\Debug\netcoreapp3.1\PaymentAPI.AssemblyInfo.cs
 D:\API_PAYMENT\Payment\PaymentAPI\obj\Debug\netcoreapp3.1\PaymentAPI.csproj.CoreCompileInputs.cache
