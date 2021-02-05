@@ -8,35 +8,35 @@ using System.Threading.Tasks;
 
 namespace PaymentAPI.DTO
 {
-    public class PaymentModel
-    {
-        [Required(ErrorMessage = "Please enter card number.")]
-
-        //[Range(100000000000, 9999999999999999999, ErrorMessage = "CCN must be between 12 and 19 digits")]
-        [CreditCard(AcceptedCardTypes = CreditCardAttribute.CardType.Visa | CreditCardAttribute.CardType.MasterCard,ErrorMessage ="Please enter valid CCN.")]
-        public string CreditCardNumber { get; set; }
-        [Required(ErrorMessage = "Please enter card holder name.")]
-        public string CardHolder { get; set; }
-       
-        [Required(ErrorMessage = "Please enter expiration date.")]
-        [DataType(DataType.Date,ErrorMessage ="Incorrect date format.")]
-        public DateTime ExpirationDate { get; set; }
-
-        [StringLength(3, ErrorMessage = "Security code should be 3 chracters long.", MinimumLength = 0)]
-        public string SecurityCode { get; set; }
-
-        [Range(1, int.MaxValue, ErrorMessage = "Amount should be greater than 0.")]
-        [DataType(DataType.Currency)]
-        [Column(TypeName  = "decimal(18, 2)")]
-        public double Amount { get; set; }
-    }
-    
     public enum PaymentStatus
     {
         pending = 1,
         processed = 2,
         failed = 3
     }
+    public class PaymentModel
+    {
+        [Required(ErrorMessage = "Please enter card number.")]
+        [CreditCard(AcceptedCardTypes = CreditCardAttribute.CardType.Visa | CreditCardAttribute.CardType.MasterCard, ErrorMessage = "Please enter valid CCN.")]
+        public string CreditCardNumber { get; set; }
+        
+        [Required(ErrorMessage = "Please enter card holder name.")]
+        public string CardHolder { get; set; }
+
+        [Required(ErrorMessage = "Please enter expiration date.")]
+        [DataType(DataType.Date, ErrorMessage = "Incorrect date format.")]
+        public DateTime ExpirationDate { get; set; }
+        
+        [StringLength(3, ErrorMessage = "Security code should be 3 chracters long.", MinimumLength = 0)]
+        public string SecurityCode { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Amount should be greater than 0.")]
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        public double Amount { get; set; }
+    }
+
+
 
     public class CreditCardAttribute : ValidationAttribute
     {
