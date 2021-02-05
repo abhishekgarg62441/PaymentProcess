@@ -29,34 +29,44 @@ namespace PaymentAPI.Service.PaymentHistory
 
                 if (model.Amount < 20)
                 {
-                    await _iCheapPaymentGeteway.CreatePayment(model);
+                    var status = await _iCheapPaymentGeteway.CreatePayment(model);
+                    await _context.SaveChangesAsync();
+
+
+
+                    return new stringMessage("Payment Successfully done.", "Success");
                 }
 
                 else if (model.Amount > 20 & model.Amount < 500)
                 {
-                    await _iExpensivePaymentGateway.CreatePayment(model);
+                    var status = await _iExpensivePaymentGateway.CreatePayment(model);
+
+
+                    ProcessPaymentDetail item = new ProcessPaymentDetail();
+
+                    item.CardHolder = model.CardHolder;
+                    item.CreditCardNumber = model.CreditCardNumber;
+                    item.ExpirationDate = model.ExpirationDate;
+                    item.SecurityCode = model.SecurityCode;
+                    item.Amount = model.Amount;
+
+                    await _context.ProcessPaymentDetail.AddAsync(item);
+                    await _context.SaveChangesAsync();
+
+
+
+                    return new stringMessage("Payment Successfully done.", "Success");
                 }
                 else
                 {
+                    await _context.SaveChangesAsync();
 
+
+
+                    return new stringMessage("Payment Successfully done.", "Success");
                 }
 
-
-                ProcessPaymentDetail item = new ProcessPaymentDetail();
-
-                item.CardHolder = model.CardHolder;
-                item.CreditCardNumber = model.CreditCardNumber;
-                item.ExpirationDate = model.ExpirationDate;
-                item.SecurityCode = model.SecurityCode;
-                item.Amount = model.Amount;
-
-                await _context.ProcessPaymentDetail.AddAsync(item);
-
-                await _context.SaveChangesAsync();
-
-
-
-                return new stringMessage("Payment Successfully done.", "Success");
+               
 
             }
             catch (Exception ex)

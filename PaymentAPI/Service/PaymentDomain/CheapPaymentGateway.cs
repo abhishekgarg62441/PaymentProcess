@@ -8,9 +8,17 @@ namespace PaymentAPI.Service.PaymentDomain
 {
     public class CheapPaymentGateway : ICheapPaymentGeteway
     {
-        public Task<PaymentStatus> CreatePayment(PaymentModel model)
+        public async Task<string> CreatePayment(PaymentModel model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //code to process payment online cheappayment
+                return PaymentStatus.processed.ToString();
+            }
+            catch (Exception ex)
+            {
+                return PaymentStatus.failed.ToString();
+            }
         }
     }
 }

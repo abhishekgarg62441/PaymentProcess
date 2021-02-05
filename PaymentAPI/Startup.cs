@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PaymentAPI.Context;
+using PaymentAPI.Service.PaymentDomain;
 using PaymentAPI.Service.PaymentHistory;
 
 namespace PaymentAPI
@@ -34,7 +35,10 @@ namespace PaymentAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
+
+            services.AddScoped<IExpensivePaymentGateway, ExpensivePaymentGateway>();
+
+            services.AddScoped<ICheapPaymentGeteway, CheapPaymentGateway>();
 
             services.AddScoped<IPaymentHistoryRepository, PaymentHistoryRepository>();
 

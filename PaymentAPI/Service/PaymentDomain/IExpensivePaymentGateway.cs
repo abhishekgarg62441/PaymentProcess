@@ -8,6 +8,6 @@ namespace PaymentAPI.Service.PaymentDomain
 {
     public interface IExpensivePaymentGateway
     {
-        Task<PaymentStatus> CreatePayment(PaymentModel model);
+        Task<string> CreatePayment(PaymentModel model);
     }
 }
