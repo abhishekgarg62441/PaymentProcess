@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace PaymentAPI.Service.PaymentDomain
 {
-    public interface ICheapPaymentGateway
+    public interface IPremiumPaymentGateway
     {
-       string CreatePayment(PaymentModel paymentModel);
+        string CreatePayment(PaymentModel model);
     }
 }

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using PaymentAPI.DTO;
 using PaymentAPI.Service.ProcessPayment;
 
@@ -16,37 +12,42 @@ namespace PaymentAPI.Controllers
     public class PaymentController : ControllerBase
     {
 
-        private readonly IConfiguration _iConfiguration;
-
         private readonly IProcessPayment _iPaymentHistoryRepository;
-        public PaymentController( IConfiguration iConfiguration, IProcessPayment iPaymentHistoryRepository)
+        public PaymentController(IProcessPayment iPaymentHistoryRepository)
         {
-            _iConfiguration = iConfiguration;
             _iPaymentHistoryRepository = iPaymentHistoryRepository;
 
         }
 
-        [AllowAnonymous]
-        [HttpPost("ProcessPayment")]
-        public async Task<IActionResult> ProcessPayment(PaymentModel Model)
+
+        /// <summary>
+        /// To Process Payment.
+        /// </summary>
+        /// <param name="paymentModel">Payment Model</param>
+        /// <returns>
+        /// It returns the payment status for the requested payment.
+        /// or 
+        /// It returns customized error if any exception occur.
+        /// </returns>
+        [AllowAnonymous,HttpPost("ProcessPayment")]
+        public async Task<IActionResult> ProcessPayment(PaymentModel paymentModel)
         {
             try
             {
-                if (Model == null)
+                if (paymentModel == null)
                 {
                     return BadRequest("Invalid request");
                 }
 
-                var response = await _iPaymentHistoryRepository.CardProcessPayment(Model);
+                var response = await _iPaymentHistoryRepository.CardProcessPayment(paymentModel);
 
                 if (response != null)
                 {
-                    if (response.Message == "Failed")
+                    if (response.Response == "Failed")
                     {
-                        return BadRequest("Invalid request");
+                        return StatusCode(500, "Internal server error");
                     }
                 }
-
 
                 return Ok((new { Message = response.Message }));
             }

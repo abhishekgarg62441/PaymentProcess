@@ -29,7 +29,7 @@ namespace PaymentAPI
         }
 
         public IConfiguration Configuration { get; }
-      
+
         public IWebHostEnvironment _env { get; }
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -38,17 +38,19 @@ namespace PaymentAPI
 
             services.AddScoped<IExpensivePaymentGateway, ExpensivePaymentGateway>();
 
-            services.AddScoped<ICheapPaymentGeteway, CheapPaymentGateway>();
+            services.AddScoped<ICheapPaymentGateway, CheapPaymentGateway>();
+
+            services.AddScoped<IPremiumPaymentGateway, PremiumPaymentGateway>();
 
             services.AddScoped<IProcessPayment, ProcessPayment>();
 
 
             services.AddDbContext<ProcessPaymentsContext>(item => item.UseSqlServer(Configuration.GetConnectionString("connectionstring")));
 
-                 //Json changes
-                 services.AddControllers().AddNewtonsoftJson(options =>
-         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-     );
+            //Json changes
+            services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 
             //Swagger
             services.AddSwaggerGen(c =>
@@ -125,7 +127,8 @@ namespace PaymentAPI
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Edwao API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payment API V1");
+
             });
 
             app.UseRouting();

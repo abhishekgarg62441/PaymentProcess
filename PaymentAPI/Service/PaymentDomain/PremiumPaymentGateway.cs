@@ -1,24 +1,24 @@
-﻿using PaymentAPI.DTO;
-using PaymentAPI.Enums;
-using System;
+﻿using System;
+using PaymentAPI.DTO;
 using System.Threading.Tasks;
+using PaymentAPI.Enums;
 
 namespace PaymentAPI.Service.PaymentDomain
 {
-    public class CheapPaymentGateway : ICheapPaymentGateway
+    public class PremiumPaymentGateway : IPremiumPaymentGateway
     {
         /// <summary>
-        /// To Process Payment Using Cheap Payment Service. 
+        /// To Process Payment Using Premium Payment Service. 
         /// </summary>
-        /// <param name="paymentModel">Payment Model</param>
+        /// <param name="paymentModel">PaymentModel</param>
         /// <returns>
-        /// It returns the status based on payment processed from gateway.
+        /// It returns the status based on payment process.
         /// </returns>
         public string CreatePayment(PaymentModel paymentModel)
         {
             try
             {
-                //code to process payment online cheappayment
+                //Code Here To Call Premium Payment Geteway
                 return PaymentStatus.Processed.ToString();
             }
             catch (Exception ex)

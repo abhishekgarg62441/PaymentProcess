@@ -1,85 +1,125 @@
-﻿using Microsoft.AspNetCore.Http;
-using PaymentAPI.Context;
+﻿using System;
 using PaymentAPI.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using PaymentAPI.Context;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
 using PaymentAPI.Service.PaymentDomain;
+using System.Collections.Generic;
+using PaymentAPI.Enums;
 
 namespace PaymentAPI.Service.ProcessPayment
 {
     public class ProcessPayment : IProcessPayment
     {
         readonly ProcessPaymentsContext _context;
-
-        private readonly ICheapPaymentGeteway _iCheapPaymentGeteway;
+        private readonly ICheapPaymentGateway _iCheapPaymentGeteway;
         private readonly IExpensivePaymentGateway _iExpensivePaymentGateway;
-        public ProcessPayment(ProcessPaymentsContext context, ICheapPaymentGeteway iCheapPaymentGeteway, IExpensivePaymentGateway iExpensivePaymentGateway)
+        private readonly IPremiumPaymentGateway _iPremiumPaymentGeteway;
+        private static int paymentProcessRetry = 0;
+        private List<string> paymentGateways = new List<string> { "Cheap", "Expensive", "Premium" };
+        public ProcessPayment(ProcessPaymentsContext context, ICheapPaymentGateway iCheapPaymentGeteway, IExpensivePaymentGateway iExpensivePaymentGateway, IPremiumPaymentGateway iPremiumPaymentGeteway)
         {
             _context = context;
             _iCheapPaymentGeteway = iCheapPaymentGeteway;
             _iExpensivePaymentGateway = iExpensivePaymentGateway;
+            _iPremiumPaymentGeteway = iPremiumPaymentGeteway;
         }
-        public async Task<stringMessage> CardProcessPayment(PaymentModel model)
+
+        /// <summary>
+        /// To process payment and decide the payment provider based on amount.
+        /// </summary>
+        /// <param name="paymentModel">Payment Model</param>
+        /// <returns>
+        /// It returns the payment status for the requested process.
+        /// or 
+        /// It returns customized error if any exception occur.
+        /// </returns>
+        public async Task<StringMessage> CardProcessPayment(PaymentModel paymentModel)
         {
             try
             {
-
-                if (model.Amount < 20)
-                {
-                    var status = await _iCheapPaymentGeteway.CreatePayment(model);
-                    return await SaveDetail(model, status);
-                }
-
-                else if (model.Amount > 20 & model.Amount < 500)
-                {
-                    var status = await _iExpensivePaymentGateway.CreatePayment(model);
-
-                    return await SaveDetail(model, status);
-                }
-                else
-                {
-                    //yet to work  //need to retry 3 times
-                    string status = "Processed";
-
-                    return await SaveDetail(model, status);
-                }
-
-
+                string paymentStatus = string.Empty;
+                paymentProcessRetry = 0; 
+                paymentStatus = await SendPaymentProcessRequest(paymentModel, paymentStatus);
+                return await SavePaymentDetails(paymentModel, paymentStatus);
 
             }
             catch (Exception ex)
             {
-                return new stringMessage("Exception", "Failed");
+                return new StringMessage("Exception", "Failed");
             }
         }
 
-        private async Task<stringMessage> SaveDetail(PaymentModel model, string status)
+        private async Task<string> SendPaymentProcessRequest(PaymentModel paymentModel, string paymentStatus)
         {
-            ProcessPaymentDetail payment = new ProcessPaymentDetail();
+            //Check For Cheap Payment Service
 
-            payment.CardHolder = model.CardHolder;
-            payment.CreditCardNumber = model.CreditCardNumber;
-            payment.ExpirationDate = model.ExpirationDate;
-            payment.SecurityCode = model.SecurityCode;
-            payment.Amount = model.Amount;
+            if (paymentModel.Amount <= 20)
+            {
+                paymentStatus =  _iCheapPaymentGeteway.CreatePayment(paymentModel);
+            }
 
-            await _context.ProcessPaymentDetail.AddAsync(payment);
-            await _context.SaveChangesAsync();
+            //Check For Expensive Payment Service
+            else if (paymentModel.Amount > 20 & paymentModel.Amount <= 500)
+            {
+                if (paymentGateways.Contains(PaymentGateways.Expensive.ToString()))
+                {
+                    paymentStatus =  _iExpensivePaymentGateway.CreatePayment(paymentModel);
+                }
+                else
+                {
+                    paymentStatus =  _iCheapPaymentGeteway.CreatePayment(paymentModel);
+                }
+            }
 
-            PaymentState paymentstate = new PaymentState();
-            paymentstate.PaymentID = payment.PaymentID;
-            paymentstate.PaymentStateStatus = status;
+            //Check For Premium Payment Service
+            else if (paymentModel.Amount > 500)
+            {
+                paymentStatus =  _iPremiumPaymentGeteway.CreatePayment(paymentModel);
+                if (paymentStatus == PaymentStatus.Failed.ToString() && paymentProcessRetry < 3)
+                {
+                    paymentProcessRetry++;
+                    await SendPaymentProcessRequest(paymentModel, paymentStatus);
+                }
+            }
 
+            return paymentStatus;
+        }
 
-            await _context.PaymentState.AddAsync(paymentstate);
-            await _context.SaveChangesAsync();
+        /// <summary>
+        /// To save payment details.
+        /// </summary>
+        /// <param name="paymentModel">Payment Model</param>
+        /// <param name="paymentStatus">Payment Status</param>
+        /// <returns>
+        /// It returns the payment status for the requested process.
+        /// or 
+        /// It returns customized error if any exception occur.
+        /// </returns>
+        private async Task<StringMessage> SavePaymentDetails(PaymentModel paymentModel, string paymentStatus)
+        {
+            try
+            {
+                ProcessPaymentDetail payment = new ProcessPaymentDetail();
+                payment.CardHolder = paymentModel.CardHolder;
+                payment.CreditCardNumber = paymentModel.CreditCardNumber;
+                payment.ExpirationDate = paymentModel.ExpirationDate;
+                payment.SecurityCode = paymentModel.SecurityCode;
+                payment.Amount = paymentModel.Amount;
+                await _context.ProcessPaymentDetail.AddAsync(payment);
+                await _context.SaveChangesAsync();
 
+                PaymentState paymentstate = new PaymentState();
+                paymentstate.PaymentID = payment.PaymentID;
+                paymentstate.PaymentStateStatus = paymentStatus;
+                await _context.PaymentState.AddAsync(paymentstate);
+                await _context.SaveChangesAsync();
+                return new StringMessage("Payment is processed.", paymentStatus);
+            }
+            catch (Exception e)
+            {
+                return new StringMessage(e.Message, "Failed");
+            }
 
-
-            return new stringMessage("Payment is processed.", "Success");
         }
     }
 

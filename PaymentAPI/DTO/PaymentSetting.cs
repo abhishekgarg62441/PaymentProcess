@@ -8,12 +8,6 @@ using System.Threading.Tasks;
 
 namespace PaymentAPI.DTO
 {
-    public enum PaymentStatus
-    {
-        pending = 1,
-        processed = 2,
-        failed = 3
-    }
     public class PaymentModel
     {
         [Required(ErrorMessage = "Please enter card number.")]
